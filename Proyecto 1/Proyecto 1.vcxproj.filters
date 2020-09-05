@@ -33,13 +33,13 @@
     <ClCompile Include="MonederoElectronico.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="producto.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ProductoNoPerecedero.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ProductoPerecedero.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Producto.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,13 +59,13 @@
     <ClInclude Include="MonederoElectronico.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="producto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ProductoNoPerecedero.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ProductoPerecedero.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Producto.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

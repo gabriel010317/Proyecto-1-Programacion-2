@@ -33,3 +33,10 @@ void Fecha::setAnio(int a)
     this->anio = a;
 }
 
+std::string Fecha::toString() const {
+    std::stringstream x;
+    x << "dia:  " << dia << endl;
+    x << "mes:  " << mes << endl;
+    x << "anio: " << anio << endl;
+    return x.str();    
+}

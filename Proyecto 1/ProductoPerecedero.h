@@ -1,12 +1,15 @@
 #pragma once
-#include "producto.h"
+#include "Producto.h"
 #include "Fecha.h"
 
-class ProductoPerecedero:public producto
+class ProductoPerecedero:public Producto
 {
-private:
-	ProductoPerecedero(string, float, int, Fecha);
+	Fecha *fechaDeVencimiento;
+	float precioFinal;
 public:
+	ProductoPerecedero(string, float, int, int, int, int);
 	float getPrecio();
+	void calcularPrecio(Fecha*);
+	string toString();
 };
 

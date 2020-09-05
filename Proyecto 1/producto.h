@@ -2,16 +2,16 @@
 #include <iostream>
 #include <sstream>
 using namespace std;
-class producto
+class Producto
 {
-private:
+protected:
 	string nombre;
 	float precio;
 	int cantidad;
 public:
-	producto();
-	producto(string,float,int);
-	~producto();
+	Producto();
+	Producto(string,float,int);
+	~Producto();
 
     string getNombre() const;
     void setNombre(string);
@@ -22,9 +22,6 @@ public:
     int getCantidad() const;
     void setCantidad(int);
 
-	string toString() {
-		stringstream x;
-		return x.str();
-	}
+	string toString();
 };
 
