@@ -2,7 +2,8 @@
 #include "IMaquinaAdministradora.h"
 #include "IMaquinaVendedora.h"
 #include "MonederoElectronico.h"
-#include "Producto.h"
+//#include "Producto.h"
+#include "Lista.h"
 
 using namespace std;
 
@@ -10,7 +11,7 @@ class Maquina : public IMaquinaAdministradora, public IMaquinaVendedora{
 private:
 	int identificador;
 	string nombre;
-	//Coleccion* productos
+	Lista* productos;
 	MonederoElectronico* monedero;
 public:
 	Maquina(int, string, MonederoElectronico*);
