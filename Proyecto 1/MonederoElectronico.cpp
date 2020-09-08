@@ -5,7 +5,7 @@ MonederoElectronico::MonederoElectronico(){
 }
 
 MonederoElectronico::MonederoElectronico(float montoInicial){
-	this->dinero = montoInicial;
+	this->dinero = (int)montoInicial;
 }
 
 string MonederoElectronico::desgloceVuelto(string& compra){
@@ -13,15 +13,19 @@ string MonederoElectronico::desgloceVuelto(string& compra){
 }
 
 void MonederoElectronico::setDinero(int dinero){
-	this->dinero += dinero;
+	this->dinero = dinero;
+	//this->dinero += dinero;
 }
 
 int MonederoElectronico::getDinero(){
-	return dinero;
+	return this->dinero;
 }
 
 string MonederoElectronico::toString(){
-	return string();
+	stringstream s;
+	s << "Monto contenido en monedero electronico: ";
+	s << this->dinero << endl;
+	return s.str();
 }
 
 MonederoElectronico::~MonederoElectronico(){
