@@ -139,10 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Colecciones\ArrayList.cpp" />
+    <ClCompile Include="Colecciones\IteradorArrayList.cpp" />
+    <ClCompile Include="Colecciones\IteradorLinkedList.cpp" />
+    <ClCompile Include="Colecciones\LinkedList.cpp" />
+    <ClCompile Include="Colecciones\Nodo.cpp" />
     <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="IMaquinaAdministradora.cpp" />
     <ClCompile Include="IMaquinaVendedora.cpp" />
+    <ClCompile Include="InventarioProductos.cpp" />
     <ClCompile Include="Maquina.cpp" />
+    <ClCompile Include="MenuAdministrador.cpp" />
+    <ClCompile Include="MenuCobro.cpp" />
+    <ClCompile Include="MenuPrincipal.cpp" />
     <ClCompile Include="MonederoElectronico.cpp" />
     <ClCompile Include="Producto.cpp" />
     <ClCompile Include="ProductoNoPerecedero.cpp" />
@@ -150,10 +159,24 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Colecciones\ArrayList.h" />
+    <ClInclude Include="Colecciones\IIterable.h" />
+    <ClInclude Include="Colecciones\IIterador.h" />
+    <ClInclude Include="Colecciones\IList.h" />
+    <ClInclude Include="Colecciones\IReadOnlyCollection.h" />
+    <ClInclude Include="Colecciones\IteradorArrayList.h" />
+    <ClInclude Include="Colecciones\IteradorLinkedList.h" />
+    <ClInclude Include="Colecciones\LinkedList.h" />
+    <ClInclude Include="Colecciones\Nodo.h" />
+    <ClInclude Include="Colecciones\ObjetoBase.h" />
     <ClInclude Include="Fecha.h" />
     <ClInclude Include="IMaquinaAdministradora.h" />
     <ClInclude Include="IMaquinaVendedora.h" />
+    <ClInclude Include="InventarioProductos.h" />
     <ClInclude Include="Maquina.h" />
+    <ClInclude Include="MenuAdministrador.h" />
+    <ClInclude Include="MenuCobro.h" />
+    <ClInclude Include="MenuPrincipal.h" />
     <ClInclude Include="MonederoElectronico.h" />
     <ClInclude Include="Producto.h" />
     <ClInclude Include="ProductoNoPerecedero.h" />

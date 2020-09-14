@@ -1,10 +1,10 @@
 #include "Maquina.h"
 
-Maquina::Maquina(int identificador, string nombre, MonederoElectronico* monedero){
+Maquina::Maquina(int identificador, string nombre, MonederoElectronico* monedero, IList* productos){
 	this->identificador = identificador;
 	this->nombre = nombre;
 	this->monedero = monedero;
-	//this->productos = NULL
+	this->productos = productos;
 }
 
 int Maquina::getIdentificador(){
@@ -32,7 +32,7 @@ string Maquina::toString(){
 
 void Maquina::insertarProducto(Producto* producto){
 	if (producto != NULL)
-		productos->insertar(producto);
+		productos->insertarAlFinal(producto);
 }
 
 void Maquina::agregarProvisiones(string idProducto, int cantidad){
@@ -48,14 +48,17 @@ void Maquina::borrar(string algo){
 }
 
 Producto* Maquina::consultar(string nombre){
-	Iterador* iterador = this->productos->obtenerIterador();
-	iterador->primero();
-	while (iterador->estaVacio()) {
-		if (iterador->elementoActual()->getNombre() == nombre)
-			return iterador->elementoActual();
-		iterador->siguiente();
+	IIterador* iterador = this->productos->obtenerIterador();
+	Producto* Resultado = nullptr;
+	while (iterador->haySiguiente()) {
+		Producto* actual = dynamic_cast<Producto*>(iterador->actual());
+		if (actual->getNombre() == nombre){
+			Resultado = actual;
+			break;
+		}
 	}
 	delete iterador;
+	return Resultado;
 }
 
 void Maquina::ingresarDinero(int cantidad){

@@ -18,7 +18,6 @@ int main()
 	MP->invocarMenu();
 	
 	
-	
 	Fecha* Hoy = new Fecha(1, 1, 2020);
 	ProductoPerecedero* Arroz = new ProductoPerecedero("Arroz", 1500, 1, 20, 1, 2020);
 	Arroz->calcularPrecio(Hoy);

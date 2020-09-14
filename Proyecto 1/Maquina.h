@@ -2,8 +2,11 @@
 #include "IMaquinaAdministradora.h"
 #include "IMaquinaVendedora.h"
 #include "MonederoElectronico.h"
-//#include "Producto.h"
-#include "Lista.h"
+#include "Producto.h"
+#include "Colecciones/IList.h"
+#include "Colecciones/IIterador.h"
+#include "Colecciones/ArrayList.h"
+#include "Colecciones/LinkedList.h"
 
 using namespace std;
 
@@ -11,10 +14,10 @@ class Maquina : public IMaquinaAdministradora, public IMaquinaVendedora{
 private:
 	int identificador;
 	string nombre;
-	Lista* productos;
+	IList* productos;
 	MonederoElectronico* monedero;
 public:
-	Maquina(int, string, MonederoElectronico*);
+	Maquina(int, string, MonederoElectronico*, IList*);
 
 	int getIdentificador();
 
