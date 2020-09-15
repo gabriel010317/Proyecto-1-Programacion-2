@@ -36,5 +36,7 @@ string ProductoPerecedero::toString() {
 	stringstream x;
 	x << Producto::toString() << endl;
 	x << "Precio: " << precioFinal <<endl;
+	x << "Fecha de vencimiento: " << fechaDeVencimiento->toStringLineal() << endl;
+	x << "\n----------------------------------------------\n\n";
 	return x.str();
 }

@@ -40,3 +40,10 @@ std::string Fecha::toString() const {
     x << "anio: " << anio << endl;
     return x.str();    
 }
+
+string Fecha::toStringLineal() const
+{
+    stringstream x;
+    x << dia << " / " << mes << " / " << anio;
+    return x.str();
+}

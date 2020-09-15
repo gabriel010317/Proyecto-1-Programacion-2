@@ -21,5 +21,6 @@ public:
     void setAnio(int anio);
 
     string toString() const;
+    string toStringLineal() const;
 };
 

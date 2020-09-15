@@ -1,14 +1,18 @@
 #pragma once
 #include "IMaquinaAdministradora.h"
-#include "producto.h"
+#include "InventarioProductos.h"
+#include "EntradaSalida.h"
+#include "ProductoPerecedero.h"
+#include "ProductoNoPerecedero.h"
+#include "Fecha.h"
 class MenuAdministrador
 {
 
 private:
-	//InventarioAlimentos* inventarioAlimentos;
-
+	InventarioProductos* productos;
+	Fecha* hoy;
 public:
-	MenuAdministrador();
+	MenuAdministrador(InventarioProductos*, Fecha*);
 	void invocarMenu();
 
 
@@ -16,14 +20,16 @@ private:
 	char mostrarOpciones();
 	string logo();
 
-
+	
 	virtual int getIdentificador();
+	void ingresarProducto();
 	virtual string getNombre();
 	virtual void setNombre();
 	virtual string toString();
-	virtual void insertar(Producto* p);
-	virtual void agregarProviciones(string idProducto, int cantidad);
-	virtual void disminuirProviciones(string idProducto, int cantidad);
+	virtual void imprimirProductos();
+	virtual Producto* crearProducto();
+	virtual void agregarProviciones(string idProducto);
+	virtual void disminuirProviciones(string idProducto);
 	virtual void borrar(string id);
 	virtual Producto* consulta(string id);
 	virtual void ingresarDinero();

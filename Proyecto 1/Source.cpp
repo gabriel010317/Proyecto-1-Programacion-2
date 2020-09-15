@@ -6,19 +6,24 @@
 #include "MenuAdministrador.h"
 #include "MenuCobro.h"
 #include "IMaquinaAdministradora.h"
+#include "Colecciones/ArrayList.h"
+#include "Colecciones/LinkedList.h"
+#include "EntradaSalida.h"
 
 using namespace std;
 
 int main() 
 { 
-	MenuAdministrador* MA = new MenuAdministrador();
+
+	Fecha* Hoy = new Fecha(1, 1, 2020);
+	InventarioProductos* productos = new InventarioProductos(new ArrayList(16));
+	MenuAdministrador* MA = new MenuAdministrador(productos, Hoy);
 	MenuCobro* MC = new MenuCobro();
 	MenuPrincipal* MP = new MenuPrincipal(MA, MC);
 
 	MP->invocarMenu();
 	
 	
-	Fecha* Hoy = new Fecha(1, 1, 2020);
 	ProductoPerecedero* Arroz = new ProductoPerecedero("Arroz", 1500, 1, 20, 1, 2020);
 	Arroz->calcularPrecio(Hoy);
 	cout << Arroz->toString() << endl;

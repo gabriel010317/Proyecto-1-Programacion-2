@@ -144,6 +144,7 @@
     <ClCompile Include="Colecciones\IteradorLinkedList.cpp" />
     <ClCompile Include="Colecciones\LinkedList.cpp" />
     <ClCompile Include="Colecciones\Nodo.cpp" />
+    <ClCompile Include="EntradaSalida.cpp" />
     <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="IMaquinaAdministradora.cpp" />
     <ClCompile Include="IMaquinaVendedora.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Colecciones\LinkedList.h" />
     <ClInclude Include="Colecciones\Nodo.h" />
     <ClInclude Include="Colecciones\ObjetoBase.h" />
+    <ClInclude Include="EntradaSalida.h" />
     <ClInclude Include="Fecha.h" />
     <ClInclude Include="IMaquinaAdministradora.h" />
     <ClInclude Include="IMaquinaVendedora.h" />
