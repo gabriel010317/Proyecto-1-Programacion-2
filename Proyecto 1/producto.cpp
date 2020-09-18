@@ -36,7 +36,7 @@ void Producto::setCantidad(int can)
 
 string Producto::toString() {
     stringstream s;
-    s << "Producto: " << nombre << endl;
-    s << "Cantidad: " << cantidad << endl;
+    s << "  Producto: " << nombre << endl;
+    s << "  Cantidad: " << cantidad << endl;
     return s.str();
 }

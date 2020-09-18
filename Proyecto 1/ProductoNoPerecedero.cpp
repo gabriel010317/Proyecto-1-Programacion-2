@@ -16,7 +16,7 @@ void ProductoNoPerecedero::setPorcentajeDeDescuento(float des)
 string ProductoNoPerecedero::toString() {
 	stringstream x;
 	x << Producto::toString();
-	x << "Precio unitario: " << this -> getPrecio();
-	x << "\n----------------------------------------------\n\n";
+	x << "	Precio unitario: " << this -> getPrecio();
+	x << "	\n----------------------------------------------\n";
 	return x.str();
  }

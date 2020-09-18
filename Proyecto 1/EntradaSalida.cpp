@@ -6,16 +6,16 @@ string EntradaSalida::recibeString()
     do {
         if (cin >> res)
             break;
-        cerr << "Cadena de caracteres incorrecta, intentelo de nuevo" << endl;
+        cerr << "   Cadena de caracteres incorrecta, intentelo de nuevo" << endl;
     } while (cin.fail());
-    return res;
+    return "    "+res;
 }
 
 int EntradaSalida::recibeInt() {
     int res;
     cin >> res;
     while (cin.fail()) {
-        cerr << "numero entero incorrecto, intentelo de nuevo" << endl;
+        cerr << "   numero entero incorrecto, intentelo de nuevo" << endl;
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cin >> res;
@@ -25,10 +25,12 @@ int EntradaSalida::recibeInt() {
 
 bool EntradaSalida::recibeBool() {
     int res;
-    cout << "[1] SI\t[0] NO" << endl;
-    cin >> res;
+    cout << "         [1] SI\t[0] NO:" ;
+    cout << "       "; cin >> res;
+
+
     while (cin.fail() || (res != 1 && res != 0)) {
-        cout << "Valor invalido, intentelo de nuevo" << endl;
+        cout << "   Valor invalido, intentelo de nuevo" << endl;
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cin >> res;

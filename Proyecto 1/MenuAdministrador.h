@@ -19,6 +19,7 @@ public:
 private:
 	char mostrarOpciones();
 	string logo();
+	string miniLogo();
 
 	
 	virtual int getIdentificador();
@@ -28,9 +29,9 @@ private:
 	virtual string toString();
 	virtual void imprimirProductos();
 	virtual Producto* crearProducto();
-	virtual void agregarProviciones(string idProducto);
-	virtual void disminuirProviciones(string idProducto);
-	virtual void borrar(string id);
+	virtual void agregarProviciones();
+	virtual void disminuirProviciones();
+	virtual void borrar();
 	virtual Producto* consulta(string id);
 	virtual void ingresarDinero();
 	virtual void retirarDinero(int cantidad);
