@@ -35,7 +35,7 @@ void ProductoPerecedero::calcularPrecio(Fecha* actual) {
 string ProductoPerecedero::toString() {
 	stringstream x;
 	x << Producto::toString();
-	x << "	Precio Unitario: " << precioFinal <<endl;
+	x << "	Precio Unitario: " << precioFinal;
 	x << "	Fecha de vencimiento: " << fechaDeVencimiento->toStringLineal() << endl;
 	x << "\n----------------------------------------------\n";
 	return x.str();
