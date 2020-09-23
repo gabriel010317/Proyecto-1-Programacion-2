@@ -70,10 +70,10 @@ void MenuAdministrador::invocarMenu()
 			break;
 		}
 		case '6':
-			//this->imprimirAlimentos();
+			ingresarDinero();
 			break;
 		case '7':
-			//this->imprimirAlimentos();
+			retirarDinero();
 			break;
 		case '8':
 			break;
@@ -261,9 +261,16 @@ void MenuAdministrador::borrar()
 //----------------------------------------- FUNCIONES DE MONEDERO ---------------------------------------------
 void MenuAdministrador::ingresarDinero()
 {
+	EntradaSalida::imprimir(miniLogo());
+	EntradaSalida::imprimir("	Ingrese la cantidad de Dinero que desea Ingresar");
+	float din = EntradaSalida::recibeFloat();
+	
 }
-void MenuAdministrador::retirarDinero(int cantidad)
+void MenuAdministrador::retirarDinero()
 {
+	EntradaSalida::imprimir(miniLogo());
+	EntradaSalida::imprimir("	Ingrese la cantidad de Dinero que desea Retirar");
+	float din = EntradaSalida::recibeFloat();
 }
 
 

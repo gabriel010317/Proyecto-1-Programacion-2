@@ -1,7 +1,20 @@
 #include "MenuCobro.h"
+#include "EntradaSalida.h"
+#include "producto.h"
+#include "InventarioProductos.h"
+#include "ProductoPerecedero.h"
+#include "ProductoNoPerecedero.h"
+#include "Fecha.h"
 
 MenuCobro::MenuCobro()
 {
+	
+}
+
+MenuCobro::MenuCobro(InventarioProductos* p, Fecha* hoy):productos(p), hoy(hoy)
+{
+	
+	
 }
 
 void MenuCobro::invocarMenu()
@@ -24,6 +37,16 @@ void MenuCobro::invocarMenu()
 			cerr << "Opcion invalida, digite otra vez" << endl;
 		}
 	} while (opcion != opcionSalida);
+}
+
+void MenuCobro::imprimirProductos()
+{
+	EntradaSalida::imprimir(miniLogo());
+	EntradaSalida::imprimir("	  Menu para Ingresar Productos");
+	EntradaSalida::imprimir("	*******************************\n");
+	EntradaSalida::imprimir("----------------------------------------------\n");
+	EntradaSalida::imprimir(this->productos->toString());
+	system("pause");
 }
 
 char MenuCobro::mostrarOpciones()
@@ -52,5 +75,20 @@ string MenuCobro::logo()
 	s << "	% % %   %   %    %     %   %   %   % % % %   % % %   % % %   %    %   %   %" << endl;
 	s << "	---------------------------------------------------------------> DEL TIEMPO" << endl << endl;
 	s << "*******************************************************************************************" << endl;
+	return s.str();
+}
+
+string MenuCobro::miniLogo()
+{
+	stringstream s;
+	s << "	*******************************" << endl;
+	s << "		%       %     %" << endl;
+	s << "		%       % % % %" << endl;
+	s << "		%       %  %  %" << endl;
+	s << "		%       %     %" << endl;
+	s << "		% % %   %     %" << endl;
+	s << "		----->DEL TIEMPO" << endl << endl;
+	s << "	*******************************" << endl;
+
 	return s.str();
 }

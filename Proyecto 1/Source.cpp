@@ -16,9 +16,9 @@ int main()
 { 
 
 	Fecha* Hoy = new Fecha(1, 1, 2020);
-	InventarioProductos* productos = new InventarioProductos(new ArrayList(16));
+	InventarioProductos* productos = new InventarioProductos(new ArrayList(10));
 	MenuAdministrador* MA = new MenuAdministrador(productos, Hoy);
-	MenuCobro* MC = new MenuCobro();
+	MenuCobro* MC = new MenuCobro(productos,Hoy);
 	MenuPrincipal* MP = new MenuPrincipal(MA, MC);
 
 	MP->invocarMenu();

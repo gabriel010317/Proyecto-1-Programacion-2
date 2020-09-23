@@ -34,7 +34,7 @@ private:
 	virtual void borrar();
 	virtual Producto* consulta(string id);
 	virtual void ingresarDinero();
-	virtual void retirarDinero(int cantidad);
+	virtual void retirarDinero();
 
 
 };
