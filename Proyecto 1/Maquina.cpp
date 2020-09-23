@@ -84,20 +84,37 @@ void Maquina::retirarDinero(int cantidad){
 }
 
 string Maquina::realizarCompra(string idProducto, int cantidad, int montoPago){
-	IIterador* iterador = this->productos->obtenerIterador();
 	stringstream s;
 	int totalCompra = 0;
-	string desgloceVuelto;
+	string vuelto;
+	Producto* productoCompra = NULL;
+
+	s << "---------------Recibo de Compra---------------" << endl;
+	s << std::to_string(cantidad);
+
+	IIterador* iterador = this->productos->obtenerIterador();
 	while (iterador->haySiguiente()) {
 		if (dynamic_cast<Producto*>(iterador->actual())->getNombre() == idProducto) {
-			this->disminuirProvisiones(idProducto, cantidad);
-			totalCompra = (dynamic_cast<Producto*>(iterador->actual())->getPrecio() * cantidad);
-			s << "---------------Lista de Productos---------------" << endl;
-			s << dynamic_cast<Producto*>(iterador->actual())->getNombre() << "\t" << cantidad << "\t" << totalCompra << endl;
+
+			/*dynamic_cast<IMaquinaAdministradora*>(this)->disminuirProvisiones(idProducto, cantidad);
+			productoCompra = dynamic_cast<IMaquinaAdministradora*>(this)->consultar(idProducto);*/
+
+			productoCompra = dynamic_cast<Producto*>(iterador->actual());
+
+			break;
 		}
 	}
-	/*desgloceVuelto = s.str();
-	this->monedero->desgloceVuelto(desgloceVuelto);*/
+	delete iterador;
+
+	totalCompra = (productoCompra->getPrecio() * cantidad);
+
+	s << "\t" << productoCompra->getNombre() << "\t" << totalCompra << endl;
+
+	vuelto = s.str();
+	s << this->monedero->desgloceVuelto(vuelto);
+
+	delete productoCompra;
+
 	return s.str();
 }
 

@@ -8,35 +8,41 @@ MonederoElectronico::MonederoElectronico(float montoInicial){
 	this->dinero = (int)montoInicial;
 }
 
-string MonederoElectronico::desgloceVuelto(string& compra){
-	stringstream r(compra);
-	/*r << "Monto Total: " << totalCompra << endl;
-	r << "Monto Pagado: " << montoPago << endl;
+string MonederoElectronico::desgloceVuelto(string &compra){
+	stringstream r;
+	string auxiliar;
+	int vuelto = 0;
+	r << compra;
 	r << "---------------Desgloce de Vuelto---------------" << endl;
-	int vuelto = montoPago - totalCompra;
-	int contador = 0;
-	while (vuelto > 0) {
-		if (vuelto % 2000) {
-			for (int i = vuelto; i % 2000; i - 2000)
-				contador += 1;
-			r << contador << "Billete(s) de 2000." << endl;
+	while (r.eof()) {
+		r >> auxiliar;
+		if (stringstream(auxiliar) >> vuelto) {
+			while (vuelto > 0) {
+				int contador = 0;
+				if (vuelto % 2000) {
+					for (vuelto; vuelto % 2000; vuelto - 2000)
+						contador += 1;
+					r << contador << "Billete(s) de 2000." << endl;
+				}
+				if (vuelto % 1000) {
+					for (vuelto; vuelto % 1000; vuelto - 1000)
+						contador += 1;
+					r << contador << "Billete(s) de 1000." << endl;
+				}
+				if (vuelto % 500) {
+					for (vuelto; vuelto % 500; vuelto - 500)
+						contador += 1;
+					r << contador << "Moneda(s) de 500." << endl;
+				}
+				if (vuelto % 100) {
+					for (vuelto; vuelto % 100; vuelto - 100)
+						contador += 1;
+					r << contador << "Moneda(s) de 100." << endl;
+				}
+			}
 		}
-		if (vuelto % 1000) {
-			for (int i = vuelto; i % 1000; i - 1000)
-				contador += 1;
-			r << contador << "Billete(s) de 1000." << endl;
-		}
-		if (vuelto % 500) {
-			for (int i = vuelto; i % 500; i - 500)
-				contador += 1;
-			r << contador << "Moneda(s) de 500." << endl;
-		}
-		if (vuelto % 100) {
-			for (int i = vuelto; i % 100; i - 100)
-				contador += 1;
-			r << contador << "Moneda(s) de 100." << endl;
-		}
-	}*/
+		auxiliar.clear();
+	}
 	return r.str();
 }
 
