@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "Fecha.h"
 #include "ProductoPerecedero.h"
@@ -9,23 +10,12 @@
 #include "Colecciones/ArrayList.h"
 #include "Colecciones/LinkedList.h"
 #include "EntradaSalida.h"
+#include "Bootstrapper.h"
 
 using namespace std;
 
 int main() 
 { 
-
-	Fecha* Hoy = new Fecha(1, 1, 2020);
-	InventarioProductos* productos = new InventarioProductos(new ArrayList(10));
-	MenuAdministrador* MA = new MenuAdministrador(productos, Hoy);
-	MenuCobro* MC = new MenuCobro(productos,Hoy);
-	MenuPrincipal* MP = new MenuPrincipal(MA, MC);
-
-	MP->invocarMenu();
+	Bootstrapper::correrAplicacion();
 	
-	
-	ProductoPerecedero* Arroz = new ProductoPerecedero("Arroz", 1500, 1, 20, 1, 2020);
-	Arroz->calcularPrecio(Hoy);
-	cout << Arroz->toString() << endl;
-	cin.get();
 }

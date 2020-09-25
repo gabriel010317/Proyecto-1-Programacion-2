@@ -4,7 +4,7 @@ using namespace std;
 char MenuPrincipal::mostrarOpciones()
 {
 	system("cls");
-	pedirFecha();
+	
 	cout << logo();
 	char opcion;
 	cout << "					Menu Principal " << endl << "				    Seleccione una opcion:" << endl;
@@ -35,6 +35,7 @@ MenuPrincipal::MenuPrincipal(MenuAdministrador* menuAdmin, MenuCobro* menuCobro)
 {
 	this->menuAdmin = menuAdmin;
 	this->menuCobro = menuCobro;
+	
 }
 
 void MenuPrincipal::invocarMenu()
@@ -59,24 +60,7 @@ void MenuPrincipal::invocarMenu()
 	} while (opcion != opcionSalida);
 }
 
-void MenuPrincipal::pedirFecha()
-{
-	int d, m, a;
-	cout << logo();
-	cout << "	Ingrese el dia de hoy: " << endl<<"	";
-	cin >> d;  cout << endl;
-	cout << "	Ingrese el mes: " << endl << "	";
-	cin >> m;  cout << endl;
-	cout << "	Ingrese el Anno: " << endl << "	";
-	cin >> a;  cout << endl;
-	
-	Fecha* f = new Fecha(d, m, a);
 
-	cout << "	hoy es: " << f->toStringLineal() << endl;
-
-	system("pause");
-	system("cls");
-}
 
 MenuPrincipal::~MenuPrincipal()
 {

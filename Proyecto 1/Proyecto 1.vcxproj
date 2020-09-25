@@ -160,6 +160,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bootstrapper.h" />
     <ClInclude Include="Colecciones\ArrayList.h" />
     <ClInclude Include="Colecciones\IIterable.h" />
     <ClInclude Include="Colecciones\IIterador.h" />

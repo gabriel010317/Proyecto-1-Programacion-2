@@ -146,5 +146,8 @@
     <ClInclude Include="EntradaSalida.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bootstrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

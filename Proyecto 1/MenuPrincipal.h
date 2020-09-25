@@ -16,6 +16,5 @@ private:
 public:
 	MenuPrincipal(MenuAdministrador* menuAdmin, MenuCobro* menuCobro);
 	void invocarMenu();
-	void pedirFecha();
 	~MenuPrincipal();
 };
