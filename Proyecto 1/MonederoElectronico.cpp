@@ -48,7 +48,6 @@ string MonederoElectronico::desgloceVuelto(string &compra){
 
 void MonederoElectronico::setDinero(int dinero){
 	this->dinero = dinero;
-	//this->dinero += dinero;
 }
 
 int MonederoElectronico::getDinero(){

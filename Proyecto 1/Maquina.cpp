@@ -43,16 +43,6 @@ void Maquina::agregarProvisiones(string idProducto, int cantidad){
 	else {
 		throw logic_error("No se encontro el producto");
 	}
-	
-	/*
-	IIterador* iterador = this->productos->obtenerIterador();
-	while (iterador->haySiguiente()) {
-		if (dynamic_cast<Producto*>(iterador->actual())->getNombre() == idProducto) {
-			dynamic_cast<Producto*>(iterador->actual())->setCantidad(dynamic_cast<Producto*>(iterador->actual())->getCantidad() + cantidad);
-			break;
-		}
-	}
-	delete iterador;*/
 }
 
 void Maquina::disminuirProvisiones(string idProducto, int cantidad){
@@ -66,17 +56,6 @@ void Maquina::disminuirProvisiones(string idProducto, int cantidad){
 	else {
 		throw logic_error("No se encontro el producto");
 	}
-	
-	
-	/*
-	IIterador* iterador = this->productos->obtenerIterador();
-	while (iterador->haySiguiente()) {
-		if (dynamic_cast<Producto*>(iterador->actual())->getNombre() == idProducto) {
-			dynamic_cast<Producto*>(iterador->actual())->setCantidad(dynamic_cast<Producto*>(iterador->actual())->getCantidad() - cantidad);
-			break;
-		}
-	}
-	delete iterador;*/
 }
 
 void Maquina::borrar(string id){
@@ -88,16 +67,6 @@ void Maquina::borrar(string id){
 
 Producto* Maquina::consultar(string nombre){
 	return this->productos->consultarProducto(nombre);
-	/*Producto* Resultado = nullptr;
-	while (iterador->haySiguiente()) {
-		Producto* actual = dynamic_cast<Producto*>(iterador->actual());
-		if (actual->getNombre() == nombre){
-			Resultado = actual;
-			break;
-		}
-	}
-	delete iterador;
-	return Resultado;*/
 }
 
 string Maquina::mostrarProductos()
@@ -111,14 +80,10 @@ string Maquina::mostrarProductosPorPosicion()
 }
 
 void Maquina::ingresarDinero(int cantidad){
-	//this->monedero->setDinero(cantidad);
 	this->monedero->setDinero(this->monedero->getDinero() + cantidad);
 }
 
 void Maquina::retirarDinero(int cantidad){
-	//tenga cuidado con las implementaciones de este tipo
-	//que pasa si va a retirar mas dinero del que tiene?
-
 	if (this->monedero->getDinero() >= cantidad)
 		this->monedero->setDinero(this->monedero->getDinero() - cantidad);
 	else
@@ -126,39 +91,31 @@ void Maquina::retirarDinero(int cantidad){
 }
 
 string Maquina::realizarCompra(string idProducto, int cantidad, int montoPago){
-	/*stringstream s;
-	int totalCompra = 0;
-	string vuelto;
-	Producto* productoCompra = NULL;
+	Producto* productoCompra = dynamic_cast<IMaquinaAdministradora*>(this)->consultar(idProducto);
+	int totalCompra = productoCompra->getPrecio() * cantidad;
 
-	s << "---------------Recibo de Compra---------------" << endl;
-	s << std::to_string(cantidad);
-
-	IIterador* iterador = this->productos->obtenerIterador();
-	while (iterador->haySiguiente()) {
-		if (dynamic_cast<Producto*>(iterador->actual())->getNombre() == idProducto) {
-
-			/*dynamic_cast<IMaquinaAdministradora*>(this)->disminuirProvisiones(idProducto, cantidad);
-			productoCompra = dynamic_cast<IMaquinaAdministradora*>(this)->consultar(idProducto);*/
-/*
-			productoCompra = dynamic_cast<Producto*>(iterador->actual());
-
-			break;
-		}
+	if (montoPago < totalCompra) {
+		delete productoCompra;
+		throw out_of_range("Monto de pago insuficiente.");
 	}
-	delete iterador;
 
-	totalCompra = (productoCompra->getPrecio() * cantidad);
+	dynamic_cast<IMaquinaAdministradora*>(this)->disminuirProvisiones(idProducto, cantidad);
+	dynamic_cast<IMaquinaAdministradora*>(this)->ingresarDinero(montoPago);
 
-	s << "\t" << productoCompra->getNombre() << "\t" << totalCompra << endl;
 
-	vuelto = s.str();
-	s << this->monedero->desgloceVuelto(vuelto);
+	stringstream s;
+	s << "---------------Recibo de Compra---------------" << "\n";
+	s << std::to_string(cantidad) << "\t";
+	s << productoCompra->getNombre() << "\t";
+	s << totalCompra << "\n";
+	string voucher = s.str();
 
 	delete productoCompra;
-	
-	return s.str();*/
-	return "por implementar";
+
+	stringstream r;
+	r << this->monedero->desgloceVuelto(voucher);
+
+	return r.str();
 }
 
 Maquina::~Maquina(){
