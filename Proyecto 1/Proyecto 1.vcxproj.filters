@@ -24,12 +24,6 @@
     <ClCompile Include="Fecha.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IMaquinaAdministradora.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IMaquinaVendedora.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Maquina.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

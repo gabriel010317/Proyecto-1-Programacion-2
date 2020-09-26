@@ -4,15 +4,17 @@
 #include "EntradaSalida.h"
 #include "ProductoPerecedero.h"
 #include "ProductoNoPerecedero.h"
+#include "IMaquinaAdministradora.h"
 #include "Fecha.h"
+
 class MenuAdministrador
 {
-
 private:
-	InventarioProductos* productos;
+	IMaquinaAdministradora* Maquina;
 	Fecha* hoy;
 public:
-	MenuAdministrador(InventarioProductos*, Fecha*);
+	MenuAdministrador(IMaquinaAdministradora*, Fecha*);
+
 	void invocarMenu();
 
 
@@ -30,6 +32,7 @@ private:
 	virtual void imprimirProductos();
 	virtual Producto* crearProducto();
 	virtual void agregarProviciones();
+	virtual void consultarProducto();
 	virtual void disminuirProviciones();
 	virtual void borrar();
 	virtual Producto* consulta(string id);

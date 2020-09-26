@@ -146,8 +146,6 @@
     <ClCompile Include="Colecciones\Nodo.cpp" />
     <ClCompile Include="EntradaSalida.cpp" />
     <ClCompile Include="Fecha.cpp" />
-    <ClCompile Include="IMaquinaAdministradora.cpp" />
-    <ClCompile Include="IMaquinaVendedora.cpp" />
     <ClCompile Include="InventarioProductos.cpp" />
     <ClCompile Include="Maquina.cpp" />
     <ClCompile Include="MenuAdministrador.cpp" />

@@ -1,6 +1,6 @@
 #include "MenuAdministrador.h"
 //----------------------------------------- FUNCIONES BASICAS -------------------------------------------------
-MenuAdministrador::MenuAdministrador(InventarioProductos* inv, Fecha* actual) : productos(inv), hoy(actual)
+MenuAdministrador::MenuAdministrador(IMaquinaAdministradora* maq, Fecha* actual) : Maquina(maq), hoy(actual)
 {
 
 }
@@ -70,12 +70,13 @@ void MenuAdministrador::invocarMenu()
 			break;
 		}
 		case '6':
-			ingresarDinero();
+			this->consultarProducto();
 			break;
 		case '7':
-			retirarDinero();
+			this->ingresarDinero();
 			break;
 		case '8':
+			this->retirarDinero();
 			break;
 		case opcionSalida:
 			break;
@@ -122,7 +123,7 @@ int MenuAdministrador::getIdentificador()
 void MenuAdministrador::ingresarProducto() {
 	EntradaSalida::imprimir(miniLogo());
 	Producto* prod = crearProducto();
-	this->productos->agregarProducto(prod);
+	this->Maquina->insertarProducto(prod);
 }
 Producto* MenuAdministrador::crearProducto()
 {
@@ -159,8 +160,14 @@ Producto* MenuAdministrador::crearProducto()
 	}
 	else {
 		float desc;
-		EntradaSalida::imprimir("	Ingrese el porcentaje de descuento (0-1)");
-		desc = EntradaSalida::recibeFloat();
+		do {
+			EntradaSalida::imprimir("	Ingrese el porcentaje de descuento (0-1)");
+			desc = EntradaSalida::recibeFloat();
+			if (desc > 1 || desc < 0) {
+				EntradaSalida::imprimir("Rango incorrecto de descuento");
+			}
+		} while (desc > 1 || desc < 0);
+
 		EntradaSalida::imprimir("	Producto ingresado correctamente");
 		system("pause");
 		return new ProductoNoPerecedero(nombre, precio, cantidad, desc);
@@ -175,8 +182,8 @@ void MenuAdministrador::agregarProviciones(){
 	Producto* temp = nullptr;
 	EntradaSalida::imprimir("	Ingrese el nombre del producto a aumentar");
 	string nombre = EntradaSalida::recibeString();
-	if (productos->consultarProducto(nombre)) {
-		temp = productos->consultarProducto(nombre);
+	if (Maquina->consultar(nombre)) {
+		temp = Maquina->consultar(nombre);
 		EntradaSalida::imprimir("	Ingrese la cantidad de unidades que desea aumentar");
 		int cant = EntradaSalida::recibeInt();
 		temp->setCantidad(temp->getCantidad() + cant);
@@ -189,6 +196,19 @@ void MenuAdministrador::agregarProviciones(){
 		system("pause");
 	}
 }
+void MenuAdministrador::consultarProducto()
+{
+	EntradaSalida::imprimir(miniLogo());
+	EntradaSalida::imprimir("Inserte el nombre del producto a consultar");
+	string nombre = EntradaSalida::recibeString();
+	if (consulta(nombre)) {
+		EntradaSalida::imprimir(this->Maquina->consultar(nombre)->toString());
+	}
+	else {
+		EntradaSalida::imprimir("	No se ha encontrado el producto");
+	}
+	system("pause");
+}
 void MenuAdministrador::disminuirProviciones()
 {
 	EntradaSalida::imprimir(miniLogo());
@@ -199,8 +219,8 @@ void MenuAdministrador::disminuirProviciones()
 	string nombre = EntradaSalida::recibeString();
 	
 	Producto* temp = nullptr;
-	if (productos->consultarProducto(nombre)) {
-		temp = productos->consultarProducto(nombre);
+	if (Maquina->consultar(nombre)) {
+		temp = Maquina->consultar(nombre);
 		EntradaSalida::imprimir("	Ingrese la cantidad de unidades que desea disminuir");
 		int cant = EntradaSalida::recibeInt();
 		if (cant < temp->getCantidad()) {
@@ -225,12 +245,12 @@ void MenuAdministrador::imprimirProductos() {
 	EntradaSalida::imprimir("	  Menu para Ingresar Productos");
 	EntradaSalida::imprimir("	*******************************\n");
 	EntradaSalida::imprimir( "----------------------------------------------\n");
-	EntradaSalida::imprimir(this->productos->toString());
+	EntradaSalida::imprimir(this->Maquina->mostrarProductos());
 	system("pause");
 }
 Producto* MenuAdministrador::consulta(string id)
 {
-	return productos->consultarProducto(id);
+	return Maquina->consultar(id);
 }
 void MenuAdministrador::borrar()
 {
@@ -240,12 +260,10 @@ void MenuAdministrador::borrar()
 	EntradaSalida::imprimir("	Ingrese el nombre del producto a eliminar");
 	string id = EntradaSalida::recibeString();
 
-
-
 	Producto* temp = nullptr;
 	if (consulta(id)) {
 		temp = consulta(id);
-		productos->eliminarProducto(id);
+		Maquina->borrar(id);
 		EntradaSalida::imprimir("	Borrado con exito");
 		system("pause");
 	}
@@ -264,13 +282,22 @@ void MenuAdministrador::ingresarDinero()
 	EntradaSalida::imprimir(miniLogo());
 	EntradaSalida::imprimir("	Ingrese la cantidad de Dinero que desea Ingresar");
 	float din = EntradaSalida::recibeFloat();
-	
+	this->Maquina->ingresarDinero(din);
+	EntradaSalida::imprimir("	Ingresado exitosamente");
+	system("pause");
 }
 void MenuAdministrador::retirarDinero()
 {
 	EntradaSalida::imprimir(miniLogo());
 	EntradaSalida::imprimir("	Ingrese la cantidad de Dinero que desea Retirar");
 	float din = EntradaSalida::recibeFloat();
+	try {
+		this->Maquina->retirarDinero(din);
+	}
+	catch (exception e) {
+		EntradaSalida::imprimir(e.what());
+	}
+	system("pause");
 }
 
 

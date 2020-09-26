@@ -33,6 +33,18 @@ Producto* InventarioProductos::consultarProducto(string busqueda){
 	return resultado;
 }
 
+string InventarioProductos::toStringPosicion()
+{
+	stringstream x;
+	int contador = 0;
+	IIterador* ite = this->productos->obtenerIterador();
+	while (ite->haySiguiente()) {
+		Producto* actual = dynamic_cast<Producto*>(ite->actual());
+		x << "[ " << ++contador << " ]\t" << actual->getNombre() << endl;
+	}
+	return x.str();
+}
+
 string InventarioProductos::toString() {
 	return this->productos->toString();
 }

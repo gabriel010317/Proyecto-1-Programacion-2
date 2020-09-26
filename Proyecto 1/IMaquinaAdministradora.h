@@ -14,6 +14,7 @@ public:
 	virtual void disminuirProvisiones(std::string, int) = 0;
 	virtual void borrar(std::string) = 0;
 	virtual Producto* consultar(std::string) = 0;
+	virtual std::string mostrarProductos() = 0;
 	virtual void ingresarDinero(int) = 0;
 	virtual void retirarDinero(int) = 0;
 };

@@ -12,7 +12,7 @@
 #include "Colecciones/ArrayList.h"
 #include "Colecciones/LinkedList.h"
 #include "EntradaSalida.h"
-
+#include "Maquina.h"
 #include <iostream>
 #include <stdio.h>      // puts, printf /
 #include <ctime>       // time_t, struct tm, time, localtime 
@@ -34,13 +34,16 @@ public:
 		int m = nowLocal.tm_mon+1;
 		int y = nowLocal.tm_year+1900;
 
-	Fecha* Hoy = new Fecha(d, m, y);
-	InventarioProductos* productos = new InventarioProductos(new ArrayList(16));
-	MenuAdministrador* MA = new MenuAdministrador(productos, Hoy);
-	MenuCobro* MC = new MenuCobro(productos,Hoy);
-	MenuPrincipal* MP = new MenuPrincipal(MA, MC);
 
-	MP->invocarMenu();
+		Fecha* Hoy = new Fecha(d, m, y);
+		InventarioProductos* productos = new InventarioProductos(new ArrayList(16));
+		MonederoElectronico* monedero = new MonederoElectronico();
+		Maquina * m1 = new Maquina(1, "Maquina 1", monedero, productos);
+		MenuAdministrador* MA = new MenuAdministrador(m1, Hoy);
+		MenuCobro* MC = new MenuCobro(m1/*,Hoy*/);
+		MenuPrincipal* MP = new MenuPrincipal(MA, MC);
+
+		MP->invocarMenu();
 
 
 

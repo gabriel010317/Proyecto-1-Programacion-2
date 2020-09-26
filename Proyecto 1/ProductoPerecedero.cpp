@@ -15,13 +15,8 @@ void ProductoPerecedero::calcularPrecio(Fecha* actual) {
 		descuento = true;
 	else {
 		if (actual->getMes() < fechaDeVencimiento->getMes()) {
-			if ((fechaDeVencimiento->getDia() < 23) || (actual->getDia() > 7)) {
+			if ((30 - actual->getDia()) + fechaDeVencimiento->getDia() <= 7)
 				descuento = true;
-			}
-			else {
-				if ((30 - actual->getDia()) + fechaDeVencimiento->getDia() >= 7)
-					descuento = true;
-			}
 		}
 	}
 	if (descuento) {

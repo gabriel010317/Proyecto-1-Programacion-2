@@ -6,12 +6,7 @@
 #include "ProductoNoPerecedero.h"
 #include "Fecha.h"
 
-MenuCobro::MenuCobro()
-{
-	
-}
-
-MenuCobro::MenuCobro(InventarioProductos* p, Fecha* hoy):productos(p), hoy(hoy)
+MenuCobro::MenuCobro(Maquina* p):maquina(p)
 {
 	
 	
@@ -26,7 +21,7 @@ void MenuCobro::invocarMenu()
 		switch (opcion)
 		{
 		case '1':
-			//this->ingresarAlimento();
+			this->imprimirProductos();
 			break;
 		case '2':
 			//this->imprimirAlimentos();
@@ -41,11 +36,7 @@ void MenuCobro::invocarMenu()
 
 void MenuCobro::imprimirProductos()
 {
-	EntradaSalida::imprimir(miniLogo());
-	EntradaSalida::imprimir("	  Menu para Ingresar Productos");
-	EntradaSalida::imprimir("	*******************************\n");
-	EntradaSalida::imprimir("----------------------------------------------\n");
-	EntradaSalida::imprimir(this->productos->toString());
+	EntradaSalida::imprimir(maquina->mostrarProductosPorPosicion());
 	system("pause");
 }
 

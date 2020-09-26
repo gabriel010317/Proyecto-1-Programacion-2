@@ -13,6 +13,7 @@ public:
 	void agregarProducto(Producto*);
 	void eliminarProducto(string);
 	Producto* consultarProducto(string);
+	string toStringPosicion();
 	string toString();
 	~InventarioProductos();
 
