@@ -49,6 +49,27 @@ string InventarioProductos::toString() {
 	return this->productos->toString();
 }
 
+Producto* InventarioProductos::consultarPorPos(int p)
+{
+	stringstream x;
+	int contador = 0;
+	IIterador* ite = this->productos->obtenerIterador();
+	while (ite->haySiguiente()) {
+		Producto* actual = dynamic_cast<Producto*>(ite->actual());
+		if (contador == p)
+		{
+			if (actual != NULL)
+				return actual;
+		}
+			
+		else
+			contador++;
+		
+	}
+	throw logic_error("La poscicion del productoes invalida");
+	
+}
+
 InventarioProductos::~InventarioProductos() {
 	this->productos->liberarDatosInternos();
 	delete this->productos;

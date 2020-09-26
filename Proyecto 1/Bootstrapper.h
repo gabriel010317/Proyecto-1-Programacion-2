@@ -40,9 +40,10 @@ public:
 		MonederoElectronico* monedero = new MonederoElectronico();
 		Maquina * m1 = new Maquina(1, "Maquina 1", monedero, productos);
 		MenuAdministrador* MA = new MenuAdministrador(m1, Hoy);
-		MenuCobro* MC = new MenuCobro(m1/*,Hoy*/);
+		MenuCobro* MC = new MenuCobro(m1);
 		MenuPrincipal* MP = new MenuPrincipal(MA, MC);
 
+		
 		MP->invocarMenu();
 
 

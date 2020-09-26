@@ -35,4 +35,5 @@ private:
 	char mostrarOpciones();
 	string logo();
 	string miniLogo();
+	void comprar();
 };

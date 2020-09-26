@@ -83,3 +83,11 @@ string MenuCobro::miniLogo()
 
 	return s.str();
 }
+
+void MenuCobro::comprar()
+{
+	int pos;
+	EntradaSalida::imprimir("	Ingrese La poscicion del producto: ");
+	pos=EntradaSalida::recibeInt(); //cin>>pos;
+	maquina->mostrarProductosPorPosicion(pos);
+}

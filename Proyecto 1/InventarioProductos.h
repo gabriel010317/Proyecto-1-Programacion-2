@@ -15,6 +15,7 @@ public:
 	Producto* consultarProducto(string);
 	string toStringPosicion();
 	string toString();
+	Producto* consultarPorPos(int);
 	~InventarioProductos();
 
 };
