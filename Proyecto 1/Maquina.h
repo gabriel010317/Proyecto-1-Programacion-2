@@ -36,6 +36,7 @@ public:
 	Producto* consultar(string);
 	string mostrarProductos();
 	string mostrarProductosPorPosicion();
+	Producto* mostrarProductoPorPosicion(int);
 
 	//Administran el monedero
 	void ingresarDinero(int);

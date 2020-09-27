@@ -22,6 +22,7 @@ class Bootstrapper
 public:
 	static void correrAplicacion()
 	{
+
 		//saca fecha del sistema
 		time_t now;
 		struct tm nowLocal;
@@ -31,21 +32,20 @@ public:
 		nowLocal = *localtime(&now);
 
 		int d = nowLocal.tm_mday;
-		int m = nowLocal.tm_mon+1;
-		int y = nowLocal.tm_year+1900;
+		int m = nowLocal.tm_mon + 1;
+		int y = nowLocal.tm_year + 1900;
 
-
+	
 		Fecha* Hoy = new Fecha(d, m, y);
 		InventarioProductos* productos = new InventarioProductos(new ArrayList(16));
 		MonederoElectronico* monedero = new MonederoElectronico();
-		Maquina * m1 = new Maquina(1, "Maquina 1", monedero, productos);
+		Maquina* m1 = new Maquina(1, "Maquina 1", monedero, productos);
 		MenuAdministrador* MA = new MenuAdministrador(m1, Hoy);
 		MenuCobro* MC = new MenuCobro(m1);
 		MenuPrincipal* MP = new MenuPrincipal(MA, MC);
 
-		
-		MP->invocarMenu();
 
+		MP->invocarMenu();
 
 
 	}

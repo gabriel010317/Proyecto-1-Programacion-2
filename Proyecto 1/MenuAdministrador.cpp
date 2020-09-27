@@ -145,12 +145,30 @@ Producto* MenuAdministrador::crearProducto()
 	cantidad = EntradaSalida::recibeInt();
 	if (esPerecedero) {
 		int dv, mv, av;
-		EntradaSalida::imprimir("	Ingrese el dia de vencimiento");
-		dv = EntradaSalida::recibeInt();
-		EntradaSalida::imprimir("	Ingrese el mes de vencimiento");
-		mv = EntradaSalida::recibeInt();
-		EntradaSalida::imprimir("	Ingrese el anio de vencimiento");
-		av = EntradaSalida::recibeInt();
+		do {
+			EntradaSalida::imprimir("	Ingrese el dia de vencimiento");
+			dv = EntradaSalida::recibeInt();
+			if (dv < 1 || dv > 30) {
+				EntradaSalida::imprimir("Dia no existente.");
+			}
+		} while (dv < 1 || dv > 30);
+
+		do {
+			EntradaSalida::imprimir("	Ingrese el mes de vencimiento");
+			mv = EntradaSalida::recibeInt();
+			if (mv < 1 || mv > 12) {
+				EntradaSalida::imprimir("Mes no existente.");
+			}
+		} while (mv < 1 || mv > 12);
+
+		do {
+			EntradaSalida::imprimir("	Ingrese el anio de vencimiento");
+			av = EntradaSalida::recibeInt();
+			if (av > 2020) {
+				EntradaSalida::imprimir("Anio invalido.");
+			}
+		} while (av > 2020);
+
 		ProductoPerecedero* a = new ProductoPerecedero(nombre, precio, cantidad, dv, mv, av);
 		a->calcularPrecio(hoy);
 		EntradaSalida::imprimir("	Producto ingresado correctamente");
@@ -161,16 +179,16 @@ Producto* MenuAdministrador::crearProducto()
 	else {
 		float desc;
 		do {
-			EntradaSalida::imprimir("	Ingrese el porcentaje de descuento (0-1)");
+			EntradaSalida::imprimir("	Ingrese el porcentaje de descuento (0-100)");
 			desc = EntradaSalida::recibeFloat();
-			if (desc > 1 || desc < 0) {
+			if (desc > 100 || desc < 0) {
 				EntradaSalida::imprimir("Rango incorrecto de descuento");
 			}
-		} while (desc > 1 || desc < 0);
+		} while (desc > 100 || desc < 0);
 
 		EntradaSalida::imprimir("	Producto ingresado correctamente");
 		system("pause");
-		return new ProductoNoPerecedero(nombre, precio, cantidad, desc);
+		return new ProductoNoPerecedero(nombre, precio, cantidad, (desc/100));
 	}
 }
 

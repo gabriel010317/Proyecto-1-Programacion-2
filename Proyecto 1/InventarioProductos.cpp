@@ -66,7 +66,7 @@ Producto* InventarioProductos::consultarPorPos(int p)
 			contador++;
 		
 	}
-	throw logic_error("La poscicion del productoes invalida");
+	return nullptr;
 	
 }
 

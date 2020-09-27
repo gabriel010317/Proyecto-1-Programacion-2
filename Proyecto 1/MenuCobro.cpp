@@ -6,9 +6,7 @@
 #include "ProductoNoPerecedero.h"
 #include "Fecha.h"
 
-MenuCobro::MenuCobro(Maquina* p):maquina(p)
-{
-	
+MenuCobro::MenuCobro(Maquina* p):maquina(p){
 	
 }
 
@@ -24,7 +22,7 @@ void MenuCobro::invocarMenu()
 			this->imprimirProductos();
 			break;
 		case '2':
-			//this->imprimirAlimentos();
+			this->comprar();
 			break;
 		case opcionSalida:
 			break;
@@ -86,8 +84,38 @@ string MenuCobro::miniLogo()
 
 void MenuCobro::comprar()
 {
-	int pos;
-	EntradaSalida::imprimir("	Ingrese La poscicion del producto: ");
-	pos=EntradaSalida::recibeInt(); //cin>>pos;
-	maquina->mostrarProductosPorPosicion(pos);
+	try {
+		int pos;
+		bool op = false;
+		EntradaSalida::imprimir("	Ingrese La poscicion del producto: ");
+		pos = EntradaSalida::recibeInt() - 1;
+		Producto* temp = nullptr;
+		if (maquina->mostrarProductoPorPosicion(pos)) {
+			temp = maquina->mostrarProductoPorPosicion(pos);
+			EntradaSalida::imprimir(temp->toString());
+			EntradaSalida::imprimir("\tDesea realizar compra:");
+			op = EntradaSalida::recibeBool();
+			if (op) {
+				int can, monto;
+				string voucher;
+				EntradaSalida::imprimir("\tCuantas unidades desea comprar: ");
+				can = EntradaSalida::recibeInt();
+				EntradaSalida::imprimir("\tCon cuanto va a cancelar?: ");
+				monto = EntradaSalida::recibeInt();
+				voucher = this->maquina->realizarCompra(temp->getNombre(), can, monto);
+				EntradaSalida::imprimir(voucher);
+				system("pause");
+			}
+			else
+				system("pause");
+		}
+		else {
+			EntradaSalida::imprimir("\tNumero de posicion invalida.");
+			system("pause");
+		}
+	}
+	catch (exception& e) {
+		cerr << e.what() << endl;
+		system("pause");
+	}
 }

@@ -79,6 +79,11 @@ string Maquina::mostrarProductosPorPosicion()
 	return this->productos->toStringPosicion();
 }
 
+Producto* Maquina::mostrarProductoPorPosicion(int pos)
+{
+	return this->productos->consultarPorPos(pos);
+}
+
 void Maquina::ingresarDinero(int cantidad){
 	this->monedero->setDinero(this->monedero->getDinero() + cantidad);
 }
@@ -91,11 +96,19 @@ void Maquina::retirarDinero(int cantidad){
 }
 
 string Maquina::realizarCompra(string idProducto, int cantidad, int montoPago){
-	Producto* productoCompra = dynamic_cast<IMaquinaAdministradora*>(this)->consultar(idProducto);
-	int totalCompra = productoCompra->getPrecio() * cantidad;
+	string nombreProducto;
+	string cantidadN = std::to_string(cantidad);
+	int totalCompra = 0;
+
+	if (dynamic_cast<IMaquinaAdministradora*>(this)->consultar(idProducto) != nullptr) {
+		nombreProducto = dynamic_cast<IMaquinaAdministradora*>(this)->consultar(idProducto)->getNombre();
+		totalCompra = dynamic_cast<IMaquinaAdministradora*>(this)->consultar(idProducto)->getPrecio() * cantidad;
+	}
+	else {
+		throw logic_error("Producto no existe en inventario.");
+	}
 
 	if (montoPago < totalCompra) {
-		delete productoCompra;
 		throw out_of_range("Monto de pago insuficiente.");
 	}
 
@@ -105,12 +118,10 @@ string Maquina::realizarCompra(string idProducto, int cantidad, int montoPago){
 
 	stringstream s;
 	s << "---------------Recibo de Compra---------------" << "\n";
-	s << std::to_string(cantidad) << "\t";
-	s << productoCompra->getNombre() << "\t";
+	s << cantidadN << "\t";
+	s << nombreProducto << "\t";
 	s << totalCompra << "\n";
 	string voucher = s.str();
-
-	delete productoCompra;
 
 	stringstream r;
 	r << this->monedero->desgloceVuelto(voucher);

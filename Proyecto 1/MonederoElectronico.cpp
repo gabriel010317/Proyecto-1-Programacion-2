@@ -14,7 +14,7 @@ string MonederoElectronico::desgloceVuelto(string &compra){
 	int vuelto = 0;
 	r << compra;
 	r << "---------------Desgloce de Vuelto---------------" << endl;
-	while (r.eof()) {
+	while (!r.eof()) {
 		r >> auxiliar;
 		if (stringstream(auxiliar) >> vuelto) {
 			while (vuelto > 0) {
