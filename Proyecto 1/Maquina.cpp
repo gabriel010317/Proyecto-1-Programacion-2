@@ -97,12 +97,13 @@ void Maquina::retirarDinero(int cantidad){
 
 string Maquina::realizarCompra(string idProducto, int cantidad, int montoPago){
 	string nombreProducto;
-	string cantidadN = std::to_string(cantidad);
 	int totalCompra = 0;
+	int vuelto = 0;
 
 	if (dynamic_cast<IMaquinaAdministradora*>(this)->consultar(idProducto) != nullptr) {
 		nombreProducto = dynamic_cast<IMaquinaAdministradora*>(this)->consultar(idProducto)->getNombre();
-		totalCompra = dynamic_cast<IMaquinaAdministradora*>(this)->consultar(idProducto)->getPrecio() * cantidad;
+		totalCompra = (dynamic_cast<IMaquinaAdministradora*>(this)->consultar(idProducto)->getPrecio() * cantidad);
+		vuelto = montoPago - (dynamic_cast<IMaquinaAdministradora*>(this)->consultar(idProducto)->getPrecio() * cantidad);
 	}
 	else {
 		throw logic_error("Producto no existe en inventario.");
@@ -117,16 +118,15 @@ string Maquina::realizarCompra(string idProducto, int cantidad, int montoPago){
 
 
 	stringstream s;
-	s << "---------------Recibo de Compra---------------" << "\n";
-	s << cantidadN << "\t";
+	s << "---------------Recibo de Compra---------------" << endl;
+	s << cantidad << "\t";
 	s << nombreProducto << "\t";
-	s << totalCompra << "\n";
-	string voucher = s.str();
+	s << totalCompra << endl;
+	string voucher = std::to_string(vuelto);
 
-	stringstream r;
-	r << this->monedero->desgloceVuelto(voucher);
+	s << this->monedero->desgloceVuelto(voucher);
 
-	return r.str();
+	return s.str();
 }
 
 Maquina::~Maquina(){
