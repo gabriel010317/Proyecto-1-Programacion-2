@@ -47,7 +47,7 @@ public:
 
 		MP->invocarMenu();
 
-
+		delete MP;
 	}
 };
 

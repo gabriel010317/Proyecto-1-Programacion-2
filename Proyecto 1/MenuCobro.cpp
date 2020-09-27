@@ -34,6 +34,7 @@ void MenuCobro::invocarMenu()
 
 void MenuCobro::imprimirProductos()
 {
+	EntradaSalida::imprimir(miniLogo());
 	EntradaSalida::imprimir(maquina->mostrarProductosPorPosicion());
 	system("pause");
 }
@@ -84,6 +85,7 @@ string MenuCobro::miniLogo()
 
 void MenuCobro::comprar()
 {
+	EntradaSalida::imprimir(miniLogo());
 	try {
 		int pos;
 		bool op = false;
